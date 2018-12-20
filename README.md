@@ -1,6 +1,6 @@
 # Would You Rather Project
 
-*I won't be touching this file yet as it contains important information for me*
+*I won't be changing this file yet as it contains important information for me*
 
 This is the starter code for the final assessment project for Udacity's React & Redux course.
 
