@@ -12,3 +12,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.container {
+  margin: 0 auto;
+  max-width: 768px;
+}
+
+.question-list {
+  border: 1px grey solid;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.question-list ul {
+  padding: 0;
+}
+
+.question-list ul li {
+  display: block;
+  border: 1px grey solid;
+  border-radius: 2px;
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.question-list ul li div {
+  display: inline-block;
+  border: 1px green solid;
+}
+
+img {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  padding: 20px
+}

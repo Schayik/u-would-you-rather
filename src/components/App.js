@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-
 import { connect } from 'react-redux'
+
 import { handleInitialData } from '../actions/shared'
+
+import QuestionList from './QuestionList'
 
 class App extends Component {
 
@@ -11,8 +13,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Would You Rather
+      <div className='container'>
+        <QuestionList />
       </div>
     );
   }

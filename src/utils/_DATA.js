@@ -14,7 +14,7 @@ let users = {
   tylermcginnis: {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: 'https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png',
+    avatarURL: 'https://cdn.iconscout.com/icon/free/png-256/avatar-375-456327.png',
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: 'https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png',
+    avatarURL: 'https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png',
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
