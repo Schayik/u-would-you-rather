@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class QuestionSmall extends Component {
+import { Link } from 'react-router-dom'
 
-  // todo: make button go to right page.
+class QuestionSmall extends Component {
 
   render() {
     const { question, author } = this.props
-    console.log(author)
     return (
-      <div>
+      <div className='question'>
         <h3>{author.name} Asks:</h3>
-        <img
-          src={author.avatarURL}
-          alt={`Avatar of ${author}`}
-        />
-        <div>
-          <h3>Would You Rather</h3>
-          <p>... {question.optionOne.text} or ...</p>
-          <button>View Full</button>
+        <div className='question-wrapper'>
+          <img
+            src={author.avatarURL}
+            alt={`Avatar of ${author}`}
+          />
+          <div>
+            <h2>Would You Rather ...</h2>
+            <p>{question.optionOne.text} or {question.optionTwo.text}?</p>
+            <Link to={`/question/${question.id}`}>View Full</Link>
+          </div>
         </div>
       </div>
     )

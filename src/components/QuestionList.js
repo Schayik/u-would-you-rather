@@ -41,7 +41,7 @@ function mapStateToProps( {authedUser, users, questions} ) {
   return {
     questionIds: Object.keys(questions),
     answeredIds: users[authedUser]
-      ? users[authedUser].questions
+      ? Object.keys(users[authedUser].answers)
       : null
   }
 }
