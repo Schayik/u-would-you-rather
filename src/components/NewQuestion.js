@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { handleAddQuestion } from '../actions/questions'
+import { handleAddQuestion } from '../actions/shared'
 
 class NewQuestion extends Component {
 
