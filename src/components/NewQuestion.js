@@ -33,7 +33,7 @@ class NewQuestion extends Component {
 
     return (
       <div>
-        <h1>New Question</h1>
+        <h2>Would You Rather ...</h2>
         <form onSubmit={this.handleSubmit}>
           <textarea
             placeholder="Option One"
@@ -41,6 +41,7 @@ class NewQuestion extends Component {
             onChange={e => this.setState({optionOneText: e.target.value})}
             maxLength={50}
           />
+          <span>OR</span>
           <textarea
             placeholder="Option Two"
             value={optionTwoText}

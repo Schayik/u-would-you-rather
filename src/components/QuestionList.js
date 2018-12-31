@@ -11,22 +11,26 @@ class QuestionList extends Component {
 
   render() {
     const { questionIds, answeredIds } = this.props
+    const { showAnsweredQuestions } = this.state
 
-    const ids = this.state.showAnsweredQuestions
+    const ids = showAnsweredQuestions
       ? questionIds.filter(id => answeredIds.includes(id))
       : questionIds.filter(id => !answeredIds.includes(id))
 
     return (
       <div className='question-list'>
-        <h2>QuestionList</h2>
-        <button onClick={() => this.setState({showAnsweredQuestions: true})}>
-          Answered
+        <button className={showAnsweredQuestions ? 'none' : 'focus'}
+          onClick={() => this.setState({showAnsweredQuestions: true})}>
+          Answered Questions
         </button>
-        <button onClick={() => this.setState({showAnsweredQuestions: false})}>
-          Unanswered
+        <button className={showAnsweredQuestions ? 'focus' : 'none'}
+          onClick={() => this.setState({showAnsweredQuestions: false})}>
+          Unanswered Questions
         </button>
         <ul>
-          {ids && ids.map(id => (
+          {ids.length === 0
+            ? 'There are no questions available'
+            : ids.map(id => (
             <li key={id}>
               <QuestionSmall id={id}/>
             </li>

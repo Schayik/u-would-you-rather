@@ -22,7 +22,12 @@ class Nav extends Component {
               Leaderboard
             </NavLink>
           </li>
-          <li>
+          <li className='right'>
+            <NavLink to='/login' activeClassName='active'>
+              Login
+            </NavLink>
+          </li>
+          <li className='right'>
             {this.props.authedUserName}
           </li>
         </ul>

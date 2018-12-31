@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
+import { formatDate } from '../utils/helpers'
+
 class QuestionSmall extends Component {
 
   render() {
@@ -15,10 +17,11 @@ class QuestionSmall extends Component {
             src={author.avatarURL}
             alt={`Avatar of ${author}`}
           />
-          <div>
+          <div className='question-options'>
             <h2>Would You Rather ...</h2>
             <p>{question.optionOne.text} or {question.optionTwo.text}?</p>
             <Link to={`/question/${question.id}`}>View Full</Link>
+            <p>{formatDate(question.timestamp)}</p>
           </div>
         </div>
       </div>

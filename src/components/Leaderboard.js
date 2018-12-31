@@ -12,11 +12,19 @@ class Leaderboard extends Component {
         <h1>Leaderboard</h1>
         <ul>
           {orderedIds && orderedIds.map(id => (
-            <li key={id}>
-              <h2>{users[id].name}</h2>
-              <p>Questions: {users[id].questions.length}</p>
-              <p>Answers: {Object.keys(users[id].answers).length}</p>
-              <p>Total: {users[id].questions.length + Object.keys(users[id].answers).length}</p>
+            <li key={id} className='question'>
+              <h3>{users[id].name}</h3>
+              <div className='question-wrapper'>
+                <img
+                  src={users[id].avatarURL}
+                  alt={`Avatar of ${users[id]}`}
+                />
+                <div className='question-options'>
+                  <h2>Questions: {users[id].questions.length}</h2>
+                  <h2>Answers: {Object.keys(users[id].answers).length}</h2>
+                  <h2>Total: {users[id].questions.length + Object.keys(users[id].answers).length}</h2>
+                </div>
+              </div>
             </li>
           ))}
         </ul>

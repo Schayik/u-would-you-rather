@@ -21,12 +21,12 @@ class QuestionDetails extends Component {
             <h2>Results:</h2>
             <div className={`question-result ${chosenOne}`}>
               <p>{optionOne.text}</p>
-              <p>{`${optionOne.votes.length / totalVotes * 100}%`}</p>
+              <p>{`${(optionOne.votes.length / totalVotes * 100).toFixed(0)}%`}</p>
               <p>{`${optionOne.votes.length} out of ${totalVotes} votes`}</p>
             </div>
             <div className={`question-result ${!chosenOne}`}>
               <p>{optionTwo.text}</p>
-              <p>{`${optionTwo.votes.length / totalVotes * 100}%`}</p>
+              <p>{`${(optionTwo.votes.length / totalVotes * 100).toFixed(0)}%`}</p>
               <p>{`${optionTwo.votes.length} out of ${totalVotes} votes`}</p>
             </div>
           </div>

@@ -9,6 +9,7 @@ import QuestionList from './QuestionList'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import QuestionDirector from './QuestionDirector'
+import Login from './Login'
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path='/add' component={NewQuestion} />
               <Route path='/leaderboard' component={Leaderboard} />
               <Route path='/question/:id' component={QuestionDirector} />
+              <Route path='/login' component={Login} />
             </div>
           }
         </Fragment>

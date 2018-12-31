@@ -13,9 +13,29 @@ code {
     monospace;
 }
 
+a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+h2 {
+  margin-bottom: 12px;
+}
+
 .nav {
-  border-bottom: 1px blue solid;
+  background-color: black;
+  border-bottom: 4px #FF9500 solid;
+  color: #FFFFFF;
+  font-weight: bold;
   width: 100%;
+  padding: 1px;
 }
 .nav ul {
   max-width: 768px;
@@ -24,6 +44,14 @@ code {
 .nav ul li {
   display: inline-block;
   padding-right: 24px
+}
+.nav ul li.right {
+  padding-right: 0;
+  padding-left: 24px;
+  float: right;
+}
+.nav ul li a:hover {
+  color: #FF9500;
 }
 
 .container {
@@ -34,20 +62,21 @@ code {
 .question-list {
   border: 1px grey solid;
   border-radius: 4px;
-  padding: 16px;
 }
 .question-list button {
-  background-color: #FF9500;
-  border: 1px black solid;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
   width: 50%;
   padding: 8px;
   font-weight: bold;
+  outline: none;
 }
-.question-list button:active {
-  background-color: white;
+.question-list button.focus {
+  background-color: #FF9500;
 }
 .question-list ul {
-  padding: 0;
+  margin: 16px;
 }
 .question-list ul li {
   display: block;
@@ -55,6 +84,7 @@ code {
 
 .question {
   color: #FFFFFF;
+  margin-bottom: 16px;
 }
 .question h3 {
   background-color: #FF9500;
@@ -71,12 +101,12 @@ code {
   padding: 32px;
 }
 .question .question-wrapper img {
-  width: 30%;
-  height: 30%;
+  width: 25%;
+  height: 25%;
   padding-right: 32px;
   margin: auto 0;
 }
-.question .question-wrapper .question-options {
+.question .question-wrapper .question-options, .question .question-wrapper .question-form {
   border-left: 2px #FF9500 solid;
   padding-left: 32px;
   width: 100%;
@@ -85,7 +115,15 @@ code {
   margin-left: 12px;
   font-size: 20px;
 }
-.question .question-wrapper .question-options input[type='submit'] {
+.question .question-wrapper .question-options a {
+  background-color: #FF9500;
+  color: black;
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 12px 0;
+}
+
+.question .question-wrapper .question-form input[type='submit'] {
   background-color: #FF9500;
   border: none;
   border-radius: 4px;
@@ -94,6 +132,7 @@ code {
   font-size: 24px;
   font-weight: bold;
   padding: 12px;
+  cursor: pointer;
   margin-top: 24px;
   width: 100%;
 }
@@ -125,4 +164,34 @@ code {
 
 textarea {
   display: block;
+}
+
+.login-list {
+
+}
+.login-list li {
+  background-color: black;
+  border-radius: 4px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+.login-list li img {
+  height: 40px;
+  width: 40px;
+  margin-right: 12px;
+}
+.login-list li p {
+  margin-right: 12px;
+  width: 120px;
+}
+.login-list li button {
+  background-color: #FF9500;
+  border: none;
+  font-weight: bold;
+  outline: none;
+  padding: 8px 12px;
+  cursor: pointer;
 }
