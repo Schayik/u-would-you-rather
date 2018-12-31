@@ -13,8 +13,8 @@ class QuestionList extends Component {
     const { questionIds, answeredIds } = this.props
 
     const ids = this.state.showAnsweredQuestions
-      ? answeredIds
-      : questionIds && answeredIds && questionIds.filter(id => !answeredIds.includes(id))
+      ? questionIds.filter(id => answeredIds.includes(id))
+      : questionIds.filter(id => !answeredIds.includes(id))
 
     return (
       <div className='question-list'>
@@ -37,12 +37,13 @@ class QuestionList extends Component {
   }
 }
 
-function mapStateToProps( {authedUser, users, questions} ) {
+function mapStateToProps( { authedUser, users, questions } ) {
   return {
-    questionIds: Object.keys(questions),
+    questionIds: Object.keys(questions)
+      .sort( (a,b) => questions[b].timestamp - questions[a].timestamp ),
     answeredIds: users[authedUser]
       ? Object.keys(users[authedUser].answers)
-      : null
+      : []
   }
 }
 
