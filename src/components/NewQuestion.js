@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import { handleAddQuestion } from '../actions/shared'
 
@@ -8,6 +9,7 @@ class NewQuestion extends Component {
   state = {
     optionOneText: '',
     optionTwoText: '',
+    redirect: false,
   }
 
   handleSubmit = e => {
@@ -17,11 +19,17 @@ class NewQuestion extends Component {
     const { dispatch } = this.props
 
     dispatch(handleAddQuestion(optionOneText, optionTwoText))
+
+    this.setState({ redirect: true })
   }
 
   render() {
 
-    const { optionOneText, optionTwoText } = this.state
+    const { optionOneText, optionTwoText, redirect } = this.state
+
+    if (redirect) {
+      return <Redirect to='/' />
+    }
 
     return (
       <div>

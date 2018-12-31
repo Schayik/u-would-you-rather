@@ -6,7 +6,7 @@ import { handleSaveQuestionAnswer } from '../actions/shared'
 class Question extends Component {
 
   state = {
-    option: 'none'
+    option: 'none',
   }
 
   handleSubmit(e) {
@@ -18,10 +18,6 @@ class Question extends Component {
     this.state.option === 'none'
       ? alert('No option selected, please select one.')
       : dispatch(handleSaveQuestionAnswer(question.id, option))
-
-    console.log(this.state.option)
-
-
   }
 
   render() {
