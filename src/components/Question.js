@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { handleSaveQuestionAnswer } from '../actions/shared'
+
 class Question extends Component {
 
   state = {
@@ -10,12 +12,16 @@ class Question extends Component {
   handleSubmit(e) {
     e.preventDefault()
 
+    const { option } = this.state
+    const { dispatch, question } = this.props
+
     this.state.option === 'none'
       ? alert('No option selected, please select one.')
-      : alert(this.state.option)
-
+      : dispatch(handleSaveQuestionAnswer(question.id, option))
 
     console.log(this.state.option)
+
+
   }
 
   render() {

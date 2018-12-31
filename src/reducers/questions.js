@@ -1,5 +1,5 @@
-import { RECEIVE_QUESTIONS } from '../actions/questions'
-import { ADD_QUESTION } from '../actions/questions'
+
+import { RECEIVE_QUESTIONS, ADD_QUESTION, SAVE_QUESTION_ANSWER } from '../actions/questions'
 
 function questions(state = {}, action) {
   switch (action.type) {
@@ -13,6 +13,18 @@ function questions(state = {}, action) {
       return {
         ...state,
         [question.id]: question,
+      }
+    case SAVE_QUESTION_ANSWER:
+      const { id, answer, authedUser } = action
+      return {
+        ...state,
+        [id]: {
+          ...state[id],
+          [answer]: {
+            ...state[id][answer],
+            votes: state[id][answer].votes.concat(authedUser)
+          }
+        }
       }
     default:
       return state

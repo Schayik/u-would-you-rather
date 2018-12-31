@@ -1,6 +1,6 @@
-import { _getUsers, _getQuestions, _saveQuestion } from '../utils/_DATA'
-import { receiveUsers, addQuestionToAuthedUser } from './users'
-import { receiveQuestions, addQuestion } from './questions'
+import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA'
+import { receiveUsers, addQuestionToAuthedUser, saveQuestionAnswerToAuthedUser } from './users'
+import { receiveQuestions, addQuestion, saveQuestionAnswer } from './questions'
 import { setAuthedUser } from './authedUser'
 
 const AUTHED_ID = 'tylermcginnis'
@@ -29,5 +29,19 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
         dispatch(addQuestion(question))
         dispatch(addQuestionToAuthedUser(authedUser, question.id))
       })
+  }
+}
+
+export function handleSaveQuestionAnswer(id, answer) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState()
+
+    return _saveQuestionAnswer ({
+      authedUser,
+      qid: id,
+      answer,
+    })
+      .then(dispatch(saveQuestionAnswer(id, answer, authedUser)))
+      .then(dispatch(saveQuestionAnswerToAuthedUser(authedUser, id, answer)))
   }
 }
