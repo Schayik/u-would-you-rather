@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class Nav extends Component {
@@ -8,24 +8,16 @@ class Nav extends Component {
       <div className='nav'>
         <ul>
           <li>
-            <NavLink to='/' exact activeClassName='active'>
-              Home
-            </NavLink>
+            <Link to='/' >Home</Link>
           </li>
           <li>
-            <NavLink to='/add' activeClassName='active'>
-              New Question
-            </NavLink>
+            <Link to='/add' >New Question</Link>
           </li>
           <li>
-            <NavLink to='/leaderboard' activeClassName='active'>
-              Leaderboard
-            </NavLink>
+            <Link to='/leaderboard' >Leaderboard</Link>
           </li>
           <li className='right'>
-            <NavLink to='/login' activeClassName='active'>
-              Login
-            </NavLink>
+            <Link to='/login' >Login</Link>
           </li>
           <li className='right'>
             {this.props.authedUserName}

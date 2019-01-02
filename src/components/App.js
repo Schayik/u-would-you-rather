@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { handleInitialData } from '../actions/shared'
@@ -11,6 +11,15 @@ import Leaderboard from './Leaderboard'
 import QuestionDirector from './QuestionDirector'
 import Login from './Login'
 
+let loggedIn = false
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    loggedIn === true
+      ? <Component {...props} />
+      : <Redirect to='/login' />
+  )}/>
+)
+
 class App extends Component {
 
   componentDidMount() {
@@ -18,14 +27,15 @@ class App extends Component {
   }
 
   render() {
+    loggedIn = this.props.loggedIn
     return (
       <Router>
         <Fragment>
           <Nav />
           {!this.props.loading &&
             <div className='container'>
-              <Route path='/' exact component={QuestionList} />
-              <Route path='/add' component={NewQuestion} />
+              <PrivateRoute path='/' exact component={QuestionList} />
+              <PrivateRoute path='/add' component={NewQuestion} />
               <Route path='/leaderboard' component={Leaderboard} />
               <Route path='/question/:id' component={QuestionDirector} />
               <Route path='/login' component={Login} />
@@ -37,9 +47,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps( { authedUser } ) {
+function mapStateToProps( { questions, authedUser } ) {
   return {
-    loading: authedUser === null,
+    loading: questions === null,
+    loggedIn: authedUser !== null,
   }
 }
 
