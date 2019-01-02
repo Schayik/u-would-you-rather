@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { handleInitialData } from '../actions/shared'
@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     loggedIn === true
       ? <Component {...props} />
-      : <Redirect to='/login' />
+      : <div>Please login first</div>
   )}/>
 )
 
@@ -37,7 +37,7 @@ class App extends Component {
               <PrivateRoute path='/' exact component={QuestionList} />
               <PrivateRoute path='/add' component={NewQuestion} />
               <Route path='/leaderboard' component={Leaderboard} />
-              <Route path='/question/:id' component={QuestionDirector} />
+              <PrivateRoute path='/question/:id' component={QuestionDirector} />
               <Route path='/login' component={Login} />
             </div>
           }

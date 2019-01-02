@@ -9,7 +9,7 @@ class QuestionDirector extends Component {
   render() {
     const { authedUser, users, question } = this.props
 
-    const questionAnswered = Object.keys(this.props.users[this.props.authedUser].answers).includes(question.id)
+    const questionAnswered = Object.keys(users[authedUser].answers).includes(question.id)
 
     return (
       <div>

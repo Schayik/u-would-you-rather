@@ -44,7 +44,14 @@ class Login extends Component {
               </button>
             </li>
           ))}
+          <li key='logout'>
+            <button
+              onClick={() => this.handleClick(null)}>
+              Logout
+            </button>
+          </li>
         </ul>
+
       </div>
     )
   }

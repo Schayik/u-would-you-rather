@@ -32,31 +32,43 @@ class NewQuestion extends Component {
     }
 
     return (
-      <div>
-        <h2>Would You Rather ...</h2>
-        <form onSubmit={this.handleSubmit}>
-          <textarea
-            placeholder="Option One"
-            value={optionOneText}
-            onChange={e => this.setState({optionOneText: e.target.value})}
-            maxLength={50}
+      <div className='question'>
+        <h3>Would You Rather ...</h3>
+        <div className='question-wrapper'>
+          <img
+            src={this.props.avatarURL}
+            alt=''
           />
-          <span>OR</span>
-          <textarea
-            placeholder="Option Two"
-            value={optionTwoText}
-            onChange={e => this.setState({optionTwoText: e.target.value})}
-            maxLength={50}
-          />
-          <button
-            type='submit'
-            disabled={optionOneText === '' || optionTwoText === ''}>
-            Submit
-          </button>
-        </form>
+          <form className='question-form' onSubmit={this.handleSubmit}>
+            <textarea
+              placeholder="Option One"
+              value={optionOneText}
+              onChange={e => this.setState({optionOneText: e.target.value})}
+              maxLength={50}
+            />
+            <span>OR</span>
+            <textarea
+              placeholder="Option Two"
+              value={optionTwoText}
+              onChange={e => this.setState({optionTwoText: e.target.value})}
+              maxLength={50}
+            />
+            <button
+              type='submit'
+              disabled={optionOneText === '' || optionTwoText === ''}>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     )
   }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps ( { authedUser, users } ) {
+  return {
+    avatarURL: users[authedUser].avatarURL
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)
