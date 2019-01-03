@@ -42,8 +42,9 @@ const Nav = ({ authedUser, authedUserName, logOut }) => {
 
 const mapStateToProps = ({ authedUser, users }) => ({
   authedUser,
-  authedUserName: authedUser ? users[authedUser].name : null
+  authedUserName: authedUser && users[authedUser] ? users[authedUser].name : null
 })
+
 const mapDispatchToProps = dispatch => ({
   logOut: () => dispatch(setAuthedUser(null))
 })

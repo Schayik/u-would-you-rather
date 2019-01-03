@@ -9,6 +9,12 @@ class QuestionDirector extends Component {
   render() {
     const { authedUser, users, question } = this.props
 
+    if (!question) {
+      return (<p>404 - question with this ID does not exists</p>)
+    } else if (!authedUser) {
+      return (<p>Please login first</p>)
+    }
+    
     const questionAnswered = Object.keys(users[authedUser].answers).includes(question.id)
 
     return (
@@ -22,12 +28,10 @@ class QuestionDirector extends Component {
   }
 }
 
-function mapStateToProps( { authedUser, users, questions }, props ) {
-  return {
-    authedUser,
-    users,
-    question: questions[props.match.params.id]
-  }
-}
+const mapStateToProps = ({ authedUser, users, questions }, props) => ({
+  authedUser,
+  users,
+  question: questions[props.match.params.id]
+})
 
 export default connect(mapStateToProps)(QuestionDirector)

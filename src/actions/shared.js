@@ -2,9 +2,12 @@
 import { _getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA'
 import { receiveUsers, addQuestionToAuthedUser, saveQuestionAnswerToAuthedUser } from './users'
 import { receiveQuestions, addQuestion, saveQuestionAnswer } from './questions'
-//import { setAuthedUser } from './authedUser'
+import { setAuthedUser } from './authedUser'
 
-//const AUTHED_ID = 'tylermcginnis'
+let AUTHED_ID = localStorage.getItem('loggedInUser')
+if (AUTHED_ID === 'null') {
+  AUTHED_ID = null
+}
 
 export function handleInitialData() {
   return dispatch => {
@@ -12,7 +15,7 @@ export function handleInitialData() {
       .then( values => {
         dispatch(receiveUsers(values[0]))
         dispatch(receiveQuestions(values[1]))
-        //dispatch(setAuthedUser(AUTHED_ID))
+        dispatch(setAuthedUser(AUTHED_ID))
       })
   }
 }
