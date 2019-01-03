@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { handleInitialData } from '../actions/shared'
@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import QuestionDirector from './QuestionDirector'
 import Login from './Login'
+//import ProtectedRoute from './ProtectedRoute'
 
 let loggedIn = false
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -34,11 +35,14 @@ class App extends Component {
           <Nav />
           {!this.props.loading &&
             <div className='container'>
-              <PrivateRoute path='/' exact component={QuestionList} />
-              <PrivateRoute path='/add' component={NewQuestion} />
-              <Route path='/leaderboard' component={Leaderboard} />
-              <PrivateRoute path='/question/:id' component={QuestionDirector} />
-              <Route path='/login' component={Login} />
+              <Switch>
+                <PrivateRoute path='/' exact component={QuestionList} />
+                <PrivateRoute path='/add' component={NewQuestion} />
+                <PrivateRoute path='/leaderboard' component={Leaderboard} />
+                <PrivateRoute path='/question/:id' component={QuestionDirector} />
+                <Route path='/login' component={Login} />
+                <Route render={() => <div>404 - File Not Found</div>} />
+              </Switch>
             </div>
           }
         </Fragment>
@@ -47,11 +51,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps( { questions, authedUser } ) {
-  return {
-    loading: questions === null,
-    loggedIn: authedUser !== null,
-  }
-}
+const mapStateToProps = ({ questions, authedUser }) => ({
+  loading: questions === null,
+  loggedIn: authedUser !== null,
+})
 
 export default connect(mapStateToProps)(App);

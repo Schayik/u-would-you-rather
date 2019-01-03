@@ -22,11 +22,17 @@ ul {
   padding: 0;
   list-style: none;
 }
-h1,h2,h3,h4,h5,h6,p {
+h1,h2,h3,p {
   margin: 0;
 }
 h2 {
   margin-bottom: 12px;
+}
+h4 {
+  color: red;
+}
+h5 {
+  margin: 8px 0;
 }
 
 .nav {
@@ -64,7 +70,7 @@ h2 {
   border-radius: 4px;
 }
 .question-list button {
-  background-color: #FFFFFF;
+  background-color: #FF9500;
   border: none;
   border-radius: 2px;
   width: 50%;
@@ -73,7 +79,10 @@ h2 {
   outline: none;
 }
 .question-list button.focus {
-  background-color: #FF9500;
+  opacity: .6;
+}
+.question-list button.focus:hover {
+  opacity: .8;
 }
 .question-list ul {
   margin: 32px;
@@ -164,6 +173,7 @@ h2 {
 
 textarea {
   display: block;
+  margin-bottom: 8px;
 }
 
 .login-list {

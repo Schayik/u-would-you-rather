@@ -1,37 +1,51 @@
-import React, { Component } from 'react'
+
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-class Nav extends Component {
-  render() {
-    return (
-      <div className='nav'>
-        <ul>
-          <li>
-            <Link to='/' >Home</Link>
+import { setAuthedUser } from '../actions/authedUser'
+
+const Nav = ({ authedUser, authedUserName, logOut }) => {
+
+  const links = [
+    ['/', 'Home'],
+    ['/add', 'New Question'],
+    ['/leaderboard', 'Leaderboard'],
+  ]
+
+  return (
+    <div className='nav'>
+      <ul>
+
+        {links.map(link => (
+          <li key={link[1]}>
+            <Link to={link[0]}>{link[1]}</Link>
           </li>
-          <li>
-            <Link to='/add' >New Question</Link>
-          </li>
-          <li>
-            <Link to='/leaderboard' >Leaderboard</Link>
-          </li>
-          <li className='right'>
-            <Link to='/login' >Login</Link>
-          </li>
-          <li className='right'>
-            {this.props.authedUserName}
-          </li>
-        </ul>
-      </div>
-    )
-  }
+        ))}
+
+        {authedUser
+          ? <Fragment>
+              <li className='right'>
+                <Link to='/login' onClick={() => logOut()}>Logout</Link>
+              </li>
+              <li className='right'>{authedUserName}</li>
+            </Fragment>
+          : <li className='right'>
+              <Link to='/login' >Login</Link>
+            </li>
+        }
+
+      </ul>
+    </div>
+  )
 }
 
-function mapStateToProps( { authedUser, users } ) {
-  return {
-    authedUserName: authedUser ? users[authedUser].name : null
-  }
-}
+const mapStateToProps = ({ authedUser, users }) => ({
+  authedUser,
+  authedUserName: authedUser ? users[authedUser].name : null
+})
+const mapDispatchToProps = dispatch => ({
+  logOut: () => dispatch(setAuthedUser(null))
+})
 
-export default connect(mapStateToProps)(Nav)
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

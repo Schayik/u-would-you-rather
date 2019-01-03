@@ -11,56 +11,44 @@ class Login extends Component {
   }
 
   handleClick(id) {
-    const { dispatch } = this.props
-
-    dispatch(setAuthedUser(id))
-
+    this.props.logIn(id)
     this.setState({ redirect: true })
   }
 
   render() {
 
-    const { users } = this.props
-    const { redirect } = this.state
-
-    if (redirect) {
+    if (this.state.redirect) {
       return <Redirect to='/' />
     }
 
+    const { users } = this.props
+
     return (
-      <div>
-        <h1>Login</h1>
-        <ul className='login-list'>
-          {Object.keys(users).map(id => (
+      <ul className='login-list'>
+        {Object.keys(users).map(id => {
+          const { avatarURL, name } = users[id]
+          return (
             <li key={id}>
               <img
-                src={users[id].avatarURL}
-                alt={`Avatar of ${users[id]}`}
+                src={avatarURL}
+                alt={`Avatar of ${name}`}
               />
-              <p>{users[id].name}</p>
+              <p>{name}</p>
               <button
                 onClick={() => this.handleClick(id)}>
                 Login with {id}
               </button>
             </li>
-          ))}
-          <li key='logout'>
-            <button
-              onClick={() => this.handleClick(null)}>
-              Logout
-            </button>
-          </li>
-        </ul>
-
-      </div>
+          )
+        })}
+      </ul>
     )
   }
 }
 
-function mapStateToProps( { users } ) {
-  return {
-    users
-  }
-}
+const mapStateToProps = ({ users }) => ({ users })
+const mapDispatchToProps = dispatch => ({
+  logIn: id => dispatch(setAuthedUser(id))
+})
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

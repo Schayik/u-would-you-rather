@@ -1,37 +1,32 @@
-import React, { Component } from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
-class Leaderboard extends Component {
-
-  render() {
-
-    const { users, orderedIds } = this.props
-
-    return (
-      <div>
-        <h1>Leaderboard</h1>
-        <ul>
-          {orderedIds && orderedIds.map(id => (
-            <li key={id} className='question'>
-              <h3>{users[id].name}</h3>
-              <div className='question-wrapper'>
-                <img
-                  src={users[id].avatarURL}
-                  alt={`Avatar of ${users[id]}`}
-                />
-                <div className='question-options'>
-                  <h2>Questions: {users[id].questions.length}</h2>
-                  <h2>Answers: {Object.keys(users[id].answers).length}</h2>
-                  <h2>Total: {users[id].questions.length + Object.keys(users[id].answers).length}</h2>
-                </div>
+const Leaderboard = ({ users, orderedIds }) => (
+  <Fragment>
+    <h1>Leaderboard</h1>
+    <ul>
+      {orderedIds && orderedIds.map(id => {
+        const { name, avatarURL, questions, answers } = users[id]
+        return (
+          <li key={id} className='question'>
+            <h3>{name}</h3>
+            <div className='question-wrapper'>
+              <img
+                src={avatarURL}
+                alt={`Avatar of ${name}`}
+              />
+              <div className='question-options'>
+                <h2>Questions: {questions.length}</h2>
+                <h2>Answers: {Object.keys(answers).length}</h2>
+                <h2>Total: {questions.length + Object.keys(answers).length}</h2>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
-}
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  </Fragment>
+)
 
 function mapStateToProps( {users} ) {
   return{

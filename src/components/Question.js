@@ -7,6 +7,14 @@ class Question extends Component {
 
   state = {
     option: 'none',
+    showAlert: false,
+  }
+
+  handleChange(e) {
+    this.setState({
+      option: e.target.value,
+      showAlert: false,
+    })
   }
 
   handleSubmit(e) {
@@ -16,7 +24,7 @@ class Question extends Component {
     const { dispatch, question } = this.props
 
     this.state.option === 'none'
-      ? alert('No option selected, please select one.')
+      ? this.setState({ showAlert: true })
       : dispatch(handleSaveQuestionAnswer(question.id, option))
   }
 
@@ -34,7 +42,7 @@ class Question extends Component {
           <div className='question-form'>
             <h2>Would You Rather</h2>
             <form
-              onChange={e => this.setState({option: e.target.value})}
+              onChange={e => this.handleChange(e)}
               onSubmit={e => this.handleSubmit(e)}>
               <div>
                 <input type='radio' name='choice' value='optionOne' />
@@ -45,6 +53,7 @@ class Question extends Component {
                   type='radio' name='choice' value='optionTwo' />
                 <span>{question.optionTwo.text}</span>
               </div>
+              {this.state.showAlert && <h4>No option selected, please choose one</h4>}
               <input type='submit' value='Submit' />
             </form>
           </div>

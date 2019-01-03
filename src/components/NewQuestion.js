@@ -16,15 +16,16 @@ class NewQuestion extends Component {
     e.preventDefault()
 
     const { optionOneText, optionTwoText } = this.state
-    const { dispatch } = this.props
+    const { addQuestion } = this.props
 
-    dispatch(handleAddQuestion(optionOneText, optionTwoText))
+    addQuestion(optionOneText, optionTwoText)
 
     this.setState({ redirect: true })
   }
 
   render() {
 
+    const { avatarURL, name } = this.props
     const { optionOneText, optionTwoText, redirect } = this.state
 
     if (redirect) {
@@ -36,21 +37,21 @@ class NewQuestion extends Component {
         <h3>Would You Rather ...</h3>
         <div className='question-wrapper'>
           <img
-            src={this.props.avatarURL}
-            alt=''
+            src={avatarURL}
+            alt={`Avatar or ${name}`}
           />
           <form className='question-form' onSubmit={this.handleSubmit}>
             <textarea
               placeholder="Option One"
               value={optionOneText}
-              onChange={e => this.setState({optionOneText: e.target.value})}
+              onChange={e => this.setState({ optionOneText: e.target.value })}
               maxLength={50}
             />
-            <span>OR</span>
+            <h5>OR</h5>
             <textarea
               placeholder="Option Two"
               value={optionTwoText}
-              onChange={e => this.setState({optionTwoText: e.target.value})}
+              onChange={e => this.setState({ optionTwoText: e.target.value })}
               maxLength={50}
             />
             <button
@@ -65,10 +66,12 @@ class NewQuestion extends Component {
   }
 }
 
-function mapStateToProps ( { authedUser, users } ) {
-  return {
-    avatarURL: users[authedUser].avatarURL
-  }
-}
+const mapStateToProps = ({ authedUser, users }) => ({
+  authedUserName: users[authedUser].name,
+  avatarURL: users[authedUser].avatarURL,
+})
+const mapDispatchToProps = dispatch => ({
+  addQuestion: (one,two) => dispatch(handleAddQuestion(one,two))
+})
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(mapStateToProps, mapDispatchToProps)(NewQuestion)

@@ -1,6 +1,9 @@
-export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const ADD_QUESTION_TO_AUTHED_USER = 'ADD_QUESTION_TO_AUTHED_USER'
-export const SAVE_QUESTION_ANSWER_TO_AUTHED_USER = 'SAVE_QUESTION_ANSWER_TO_AUTHED_USER'
+
+import {
+  RECEIVE_USERS,
+  ADD_QUESTION_TO_AUTHED_USER,
+  SAVE_QUESTION_ANSWER_TO_AUTHED_USER,
+} from './actionTypes'
 
 export function receiveUsers(users) {
   return {

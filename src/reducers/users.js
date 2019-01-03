@@ -1,4 +1,9 @@
-import { RECEIVE_USERS, ADD_QUESTION_TO_AUTHED_USER, SAVE_QUESTION_ANSWER_TO_AUTHED_USER } from '../actions/users'
+
+import {
+  RECEIVE_USERS,
+  ADD_QUESTION_TO_AUTHED_USER,
+  SAVE_QUESTION_ANSWER_TO_AUTHED_USER
+} from '../actions/actionTypes'
 
 function users(state = {}, action) {
   switch (action.type) {
